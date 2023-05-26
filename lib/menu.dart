@@ -2,12 +2,15 @@ import 'dart:async' as async;
 
 import 'package:bonfire/bonfire.dart';
 import 'package:darkness_dungeon/game.dart';
+import 'package:darkness_dungeon/resources/socket_methods.dart';
 import 'package:darkness_dungeon/util/custom_sprite_animation_widget.dart';
 import 'package:darkness_dungeon/util/enemy_sprite_sheet.dart';
 import 'package:darkness_dungeon/util/localization/strings_location.dart';
 import 'package:darkness_dungeon/util/player_sprite_sheet.dart';
 import 'package:darkness_dungeon/util/sounds.dart';
+import 'package:darkness_dungeon/widgets/custom_button.dart';
 import 'package:darkness_dungeon/widgets/custom_radio.dart';
+import 'package:darkness_dungeon/widgets/custom_textfield.dart';
 import 'package:flame_splash_screen/flame_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -18,6 +21,9 @@ class Menu extends StatefulWidget {
 }
 
 class _MenuState extends State<Menu> {
+   final SocketMethods _socketMethods = SocketMethods();
+     final TextEditingController _nameController = TextEditingController();
+
   bool showSplash = true;
   int currentPosition = 0;
   late async.Timer _timer;
@@ -28,7 +34,11 @@ class _MenuState extends State<Menu> {
     EnemySpriteSheet.miniBossIdleRight(),
     EnemySpriteSheet.bossIdleRight(),
   ];
+  @override
+  void initState(){
+        _socketMethods.createRoomSuccessListener(context);
 
+  }
   @override
   void dispose() {
     Sounds.stopBackgroundSound();
@@ -60,6 +70,18 @@ class _MenuState extends State<Menu> {
               SizedBox(
                 height: 20.0,
               ),
+              CustomTextField(
+                controller: _nameController,
+                hintText: 'Enter your nickname',
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              CustomButton(
+                  onTap: () => _socketMethods.createRoom(
+                        _nameController.text,
+                      ),
+                  text: 'Create'),
               if (sprites.isNotEmpty)
                 SizedBox(
                   height: 100,
