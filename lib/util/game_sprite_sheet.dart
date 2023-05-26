@@ -25,6 +25,14 @@ class GameSpriteSheet {
           textureSize: Vector2(16, 16),
         ),
       );
+  static Future<SpriteAnimation> azureLogo() => SpriteAnimation.load(
+        'tiled/azure_logo.png',
+        SpriteAnimationData.sequenced(
+          amount: 61,
+          stepTime: 0.2,
+          textureSize: Vector2(16, 16),
+        ),
+      );
 
   static Future<SpriteAnimation> explosion() => SpriteAnimation.load(
         'explosion.png',

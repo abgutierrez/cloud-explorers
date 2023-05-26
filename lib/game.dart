@@ -100,7 +100,7 @@ class _GameState extends State<Game> implements GameListener {
           forceTileSize: Vector2(tileSize, tileSize),
           objectsBuilder: {
             'door': (p) => Door(p.position, p.size),
-            'torch': (p) => Torch(p.position),
+            'torch': (p) => AzureLogo(p.position),
             'potion': (p) => PotionLife(p.position, 30),
             'wizard': (p) => WizardNPC(p.position),
             'spikes': (p) => Spikes(p.position),

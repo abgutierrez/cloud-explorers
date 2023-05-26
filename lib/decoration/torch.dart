@@ -28,3 +28,29 @@ class Torch extends GameDecoration with Lighting {
     }
   }
 }
+
+class AzureLogo extends GameDecoration with Lighting {
+  bool empty = false;
+  AzureLogo(Vector2 position, {this.empty = false})
+      : super.withAnimation(
+          animation: GameSpriteSheet.azureLogo(),
+          position: position,
+          size: Vector2.all(tileSize),
+        ) {
+    setupLighting(
+      LightingConfig(
+        radius: width * 2.5,
+        blurBorder: width,
+        pulseVariation: 0.1,
+        color: Colors.lightBlueAccent.withOpacity(0.2),
+      ),
+    );
+  }
+
+  @override
+  void render(Canvas canvas) {
+    if (!empty) {
+      super.render(canvas);
+    }
+  }
+}
