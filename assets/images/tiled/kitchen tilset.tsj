@@ -1,0 +1,14 @@
+{ "columns":9,
+ "image":"tileset.png",
+ "imageheight":592,
+ "imagewidth":144,
+ "margin":0,
+ "name":"kitchen tilset",
+ "spacing":0,
+ "tilecount":333,
+ "tiledversion":"1.10.1",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":"1.10"
+}
