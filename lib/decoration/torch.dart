@@ -1,6 +1,6 @@
 import 'package:bonfire/bonfire.dart';
-import 'package:darkness_dungeon/main.dart';
-import 'package:darkness_dungeon/util/game_sprite_sheet.dart';
+import 'package:cloud_explorers/main.dart';
+import 'package:cloud_explorers/util/game_sprite_sheet.dart';
 import 'package:flutter/material.dart';
 
 class Torch extends GameDecoration with Lighting {
@@ -31,11 +31,11 @@ class Torch extends GameDecoration with Lighting {
 
 class AzureLogo extends GameDecoration with Lighting {
   bool empty = false;
-  AzureLogo(Vector2 position, {this.empty = false})
+  AzureLogo(Vector2 position, Vector2 size, {this.empty = false})
       : super.withAnimation(
           animation: GameSpriteSheet.azureLogo(),
           position: position,
-          size: Vector2.all(tileSize),
+          size: size,
         ) {
     setupLighting(
       LightingConfig(

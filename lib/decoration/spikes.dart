@@ -1,6 +1,6 @@
 import 'package:bonfire/bonfire.dart';
-import 'package:darkness_dungeon/main.dart';
-import 'package:darkness_dungeon/util/game_sprite_sheet.dart';
+import 'package:cloud_explorers/main.dart';
+import 'package:cloud_explorers/util/game_sprite_sheet.dart';
 
 class Spikes extends GameDecoration with Sensor {
   final double damage;
@@ -32,8 +32,7 @@ class Spikes extends GameDecoration with Sensor {
 
   @override
   int get priority => LayerPriority.getComponentPriority(1);
-  
+
   @override
-  void onContactExit(GameComponent component) {
-  }
+  void onContactExit(GameComponent component) {}
 }

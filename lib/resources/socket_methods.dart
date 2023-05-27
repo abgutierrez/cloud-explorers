@@ -1,5 +1,5 @@
-import 'package:darkness_dungeon/provider/room_data_provider.dart';
-import 'package:darkness_dungeon/resources/socket_client.dart';
+import 'package:cloud_explorers/provider/room_data_provider.dart';
+import 'package:cloud_explorers/resources/socket_client.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:socket_io_client/socket_io_client.dart';
@@ -41,7 +41,7 @@ class SocketMethods {
     _socketClient.on('createRoomSuccess', (room) {
       Provider.of<RoomDataProvider>(context, listen: false)
           .updateRoomData(room);
-                    //TODO: uncomment this
+      //TODO: uncomment this
 
       // Navigator.pushNamed(context, GameScreen.routeName);
     });
@@ -51,14 +51,14 @@ class SocketMethods {
     _socketClient.on('joinRoomSuccess', (room) {
       Provider.of<RoomDataProvider>(context, listen: false)
           .updateRoomData(room);
-          //TODO: uncomment this
+      //TODO: uncomment this
       // Navigator.pushNamed(context, GameScreen.routeName);
     });
   }
 
   void errorOccuredListener(BuildContext context) {
     _socketClient.on('errorOccurred', (data) {
-     ScaffoldMessenger.of(context).showSnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(data['message']),
         ),

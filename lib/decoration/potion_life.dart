@@ -1,7 +1,7 @@
 import 'dart:async' as async;
 
 import 'package:bonfire/bonfire.dart';
-import 'package:darkness_dungeon/main.dart';
+import 'package:cloud_explorers/main.dart';
 
 class PotionLife extends GameDecoration with Sensor {
   final Vector2 initPosition;
@@ -36,7 +36,7 @@ class PotionLife extends GameDecoration with Sensor {
       removeFromParent();
     }
   }
-  
+
   @override
   void onContactExit(GameComponent component) {
     // TODO: implement onContactExit

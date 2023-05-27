@@ -1,6 +1,6 @@
 import 'package:bonfire/bonfire.dart';
-import 'package:darkness_dungeon/main.dart';
-import 'package:darkness_dungeon/player/knight.dart';
+import 'package:cloud_explorers/main.dart';
+import 'package:cloud_explorers/player/knight.dart';
 
 class DoorKey extends GameDecoration with Sensor {
   DoorKey(Vector2 position)
@@ -17,7 +17,7 @@ class DoorKey extends GameDecoration with Sensor {
       removeFromParent();
     }
   }
-  
+
   @override
   void onContactExit(GameComponent component) {
     // TODO: implement onContactExit

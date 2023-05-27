@@ -4,9 +4,9 @@ const app = express();
 const http = require("http");
 const {initializeApp} = require("firebase/app");
 const { rooms } = require('./models/rooms')
+const { users } = require('./models/users')
 
-const port = process.env.PORT || 3000;
-const Room = require("./models/rooms");
+const port = process.env.PORT || 5000;
 var io = require("socket.io")(http);
 
 // middle ware
@@ -88,133 +88,131 @@ function existeNick(nickPlayer) {
   return lRetorno;
 }
 
-// io.on('connection', function(client) {
+io.on('connection', function(client) {
 
-//   console.log("Cliente conectado:: ", client);
+  console.log("Cliente conectado:: ", client);
 
-//     client.on('message', function(message) {
+    client.on('message', function(message) {
 
-//       switch(message.action){
-//         case 'CREATE':
-//           let playerCreated = null;
-//           if(!existeNick(message.data.nick)) {
-//             playerCreated = createPlayer(message);
-//           } else {
-//             let error = {
-//               "action":"CREATE",
-//               "error": true,
-//               "msg":"Nick de usuário já existe"
-//             }
-//             client.emit('message', error);
-//             return;
-//           }
+      switch(message.action){
+        case 'CREATE':
+          let playerCreated = null;
+          if(!existeNick(message.data.nick)) {
+            playerCreated = createPlayer(message);
+          } else {
+            let error = {
+              "action":"CREATE",
+              "error": true,
+              "msg":"Nick de usuário já existe"
+            }
+            client.emit('message', error);
+            return;
+          }
 
-//           let player = {
-//             "action": "PLAYER_JOIN",
-//             "data":  {
-//                 "nick": playerCreated.nick,
-//                 "skin": playerCreated.skin,
-//                 "id": playerCreated.id,
-//                 "position": playerCreated.position,
-//                 "playersON": Players
-//             },
-//             "error": false,
-//             "msg":""
-//           }
-//           io.emit('message', player);
-//           playerCreated = null;
-//           break;
+          let player = {
+            "action": "PLAYER_JOIN",
+            "data":  {
+                "nick": playerCreated.nick,
+                "skin": playerCreated.skin,
+                "id": playerCreated.id,
+                "position": playerCreated.position,
+                "playersON": Players
+            },
+            "error": false,
+            "msg":""
+          }
+          io.emit('message', player);
+          playerCreated = null;
+          break;
 
-//         case 'MOVE':
-//           let playerMove = {
-//             "action": "MOVE",
-//             "time": message.time || "",
-//             "data":  {
-//                 "player_id": message.data.player_id,
-//                 "direction": message.data.direction,
-//                 "position": {
-//                   "x": message.data.position.x,
-//                   "y": message.data.position.y
-//                 }
-//             },
-//             "error": false,
-//             "msg":""
-//           }
-//           //Atualizando a posição do player
-//           if(Players[message.data.player_id])
-//             Players[message.data.player_id].position = message.data.position;
+        case 'MOVE':
+          let playerMove = {
+            "action": "MOVE",
+            "time": message.time || "",
+            "data":  {
+                "player_id": message.data.player_id,
+                "direction": message.data.direction,
+                "position": {
+                  "x": message.data.position.x,
+                  "y": message.data.position.y
+                }
+            },
+            "error": false,
+            "msg":""
+          }
+          //Atualizando a posição do player
+          if(Players[message.data.player_id])
+            Players[message.data.player_id].position = message.data.position;
             
-//           console.log("PLAYER MOVE TO: ", playerMove);
-//           client.broadcast.emit('message', playerMove);
-//           break;
+          console.log("PLAYER MOVE TO: ", playerMove);
+          client.broadcast.emit('message', playerMove);
+          break;
 
-//         case 'ATTACK':
-//             let playerAttack = {
-//               "action": "ATTACK",
-//               "time": message.time || "",
-//               "data":  {
-//                   "player_id": message.data.player_id,
-//                   "direction": message.data.direction,
-//                   "position": {
-//                     "x": message.data.position.x,
-//                     "y": message.data.position.y
-//                   }
-//               },
-//               "error": false,
-//               "msg":""
-//             }
-//             console.log("PLAYER ATTACK: ", playerAttack);
-//             client.broadcast.emit('message', playerAttack);
-//             break;
+        case 'ATTACK':
+            let playerAttack = {
+              "action": "ATTACK",
+              "time": message.time || "",
+              "data":  {
+                  "player_id": message.data.player_id,
+                  "direction": message.data.direction,
+                  "position": {
+                    "x": message.data.position.x,
+                    "y": message.data.position.y
+                  }
+              },
+              "error": false,
+              "msg":""
+            }
+            console.log("PLAYER ATTACK: ", playerAttack);
+            client.broadcast.emit('message', playerAttack);
+            break;
   
-//         case 'RECEIVED_DAMAGE':
-//             let playerDamage = {
-//               "action": "RECEIVED_DAMAGE",
-//               "time": message.time || "",
-//               "data":  {
-//                   "player_id": message.data.player_id,
-//                   "player_id_attack": message.data.player_id_attack,
-//                   "damage": message.data.damage
-//               },
-//               "error": false,
-//               "msg":""
-//             }
+        case 'RECEIVED_DAMAGE':
+            let playerDamage = {
+              "action": "RECEIVED_DAMAGE",
+              "time": message.time || "",
+              "data":  {
+                  "player_id": message.data.player_id,
+                  "player_id_attack": message.data.player_id_attack,
+                  "damage": message.data.damage
+              },
+              "error": false,
+              "msg":""
+            }
 
-//             Players[message.data.player_id].life -= message.data.damage;
+            Players[message.data.player_id].life -= message.data.damage;
 
-//             if(Players[message.data.player_id].life <= 0) 
-//               Players[message.data.player_id_attack].kills += 1; 
+            if(Players[message.data.player_id].life <= 0) 
+              Players[message.data.player_id_attack].kills += 1; 
 
-//             console.log("PLAYER DAMAGE: ", playerDamage);
-//             client.broadcast.emit('message', playerDamage);
-//             break;
-//       }
+            console.log("PLAYER DAMAGE: ", playerDamage);
+            client.broadcast.emit('message', playerDamage);
+            break;
+      }
 
-//       // user disconnected
-//       client.on('disconnect', function(connection) {
-//         console.log('DISCONNECT: ', connection);
-//         let playerLeaved = {
-//           "action": "PLAYER_LEAVED",
-//           "data":  {
-//               "nick": message.data.nick,
-//               "id": message.data.player_id,
-//           },
-//           "error": false,
-//           "msg":""
-//         }
-//         console.log("MESSAGE - playerLeaved:: ", playerLeaved);
-//         client.broadcast.emit('message', playerLeaved);
-//         delete Players[message.data.player_id];
+      // user disconnected
+      client.on('disconnect', function(connection) {
+        console.log('DISCONNECT: ', connection);
+        let playerLeaved = {
+          "action": "PLAYER_LEAVED",
+          "data":  {
+              "nick": message.data.nick,
+              "id": message.data.player_id,
+          },
+          "error": false,
+          "msg":""
+        }
+        console.log("MESSAGE - playerLeaved:: ", playerLeaved);
+        client.broadcast.emit('message', playerLeaved);
+        delete Players[message.data.player_id];
 
-//       });
+      });
 
-//     });
+    });
   
-//   });
+  });
 
-// http.listen(port, function(){
-//   console.log('Cloud Explorers on *:' + port);
-// });
+
 
 
 app.listen(port, "0.0.0.0", () => {
@@ -222,3 +220,4 @@ app.listen(port, "0.0.0.0", () => {
 });
 
 app.get('/rooms', rooms);
+app.get('/users', users);

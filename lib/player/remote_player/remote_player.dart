@@ -1,19 +1,12 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:cloud_explorers/main.dart';
-<<<<<<< Updated upstream
 import 'package:cloud_explorers/player/remote_player/remote_player_controller.dart';
-=======
-import 'package:cloud_explorers/npc/remote_player_controller.dart';
->>>>>>> Stashed changes
 import 'package:cloud_explorers/util/npc_sprite_sheet.dart';
 import 'package:cloud_explorers/util/player_sprite_sheet.dart';
 import 'package:flutter/material.dart';
 
 class RemotePlayer extends SimpleEnemy
-    with
-        UseStateController<RemotePlayerController>,
-        ObjectCollision,
-        UseBarLife {
+    with UseStateController<RemotePlayerController>, ObjectCollision {
   final int id;
   final String nick;
   late TextPaint _textConfig;
@@ -43,12 +36,6 @@ class RemotePlayer extends SimpleEnemy
           ),
         ],
       ),
-    );
-
-    setupBarLife(
-      size: Vector2(width * 1.5, size.y * 0.1),
-      borderWidth: 2,
-      borderRadius: BorderRadius.circular(2),
     );
   }
 
@@ -112,11 +99,6 @@ class RemotePlayer extends SimpleEnemy
         ],
       ),
     );
-  }
-
-  @override
-  bool checkCanReceiveDamage(AttackFromEnum attacker) {
-    return false;
   }
 
   void execShowDamage(double damage) {

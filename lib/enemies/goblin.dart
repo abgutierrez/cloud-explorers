@@ -1,9 +1,9 @@
 import 'package:bonfire/bonfire.dart';
-import 'package:darkness_dungeon/main.dart';
-import 'package:darkness_dungeon/util/enemy_sprite_sheet.dart';
-import 'package:darkness_dungeon/util/functions.dart';
-import 'package:darkness_dungeon/util/game_sprite_sheet.dart';
-import 'package:darkness_dungeon/util/sounds.dart';
+import 'package:cloud_explorers/main.dart';
+import 'package:cloud_explorers/util/enemy_sprite_sheet.dart';
+import 'package:cloud_explorers/util/functions.dart';
+import 'package:cloud_explorers/util/game_sprite_sheet.dart';
+import 'package:cloud_explorers/util/sounds.dart';
 import 'package:flutter/material.dart';
 
 class Goblin extends SimpleEnemy with ObjectCollision {

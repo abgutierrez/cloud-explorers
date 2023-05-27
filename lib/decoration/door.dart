@@ -1,8 +1,8 @@
 import 'package:bonfire/bonfire.dart';
-import 'package:darkness_dungeon/main.dart';
-import 'package:darkness_dungeon/player/knight.dart';
-import 'package:darkness_dungeon/util/game_sprite_sheet.dart';
-import 'package:darkness_dungeon/util/localization/strings_location.dart';
+import 'package:cloud_explorers/main.dart';
+import 'package:cloud_explorers/player/knight.dart';
+import 'package:cloud_explorers/util/game_sprite_sheet.dart';
+import 'package:cloud_explorers/util/localization/strings_location.dart';
 import 'package:flutter/cupertino.dart';
 
 class Door extends GameDecoration with ObjectCollision {

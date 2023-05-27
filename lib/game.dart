@@ -1,22 +1,22 @@
 import 'dart:math';
 
 import 'package:bonfire/bonfire.dart';
-import 'package:darkness_dungeon/decoration/door.dart';
-import 'package:darkness_dungeon/decoration/key.dart';
-import 'package:darkness_dungeon/decoration/potion_life.dart';
-import 'package:darkness_dungeon/decoration/spikes.dart';
-import 'package:darkness_dungeon/decoration/torch.dart';
-import 'package:darkness_dungeon/enemies/boss.dart';
-import 'package:darkness_dungeon/enemies/goblin.dart';
-import 'package:darkness_dungeon/enemies/imp.dart';
-import 'package:darkness_dungeon/enemies/mini_boss.dart';
-import 'package:darkness_dungeon/interface/knight_interface.dart';
-import 'package:darkness_dungeon/main.dart';
-import 'package:darkness_dungeon/npc/kid.dart';
-import 'package:darkness_dungeon/npc/wizard_npc.dart';
-import 'package:darkness_dungeon/player/knight.dart';
-import 'package:darkness_dungeon/util/dialogs.dart';
-import 'package:darkness_dungeon/util/sounds.dart';
+import 'package:cloud_explorers/decoration/door.dart';
+import 'package:cloud_explorers/decoration/key.dart';
+import 'package:cloud_explorers/decoration/potion_life.dart';
+import 'package:cloud_explorers/decoration/spikes.dart';
+import 'package:cloud_explorers/decoration/torch.dart';
+import 'package:cloud_explorers/enemies/boss.dart';
+import 'package:cloud_explorers/enemies/goblin.dart';
+import 'package:cloud_explorers/enemies/imp.dart';
+import 'package:cloud_explorers/enemies/mini_boss.dart';
+import 'package:cloud_explorers/interface/knight_interface.dart';
+import 'package:cloud_explorers/main.dart';
+import 'package:cloud_explorers/npc/kid.dart';
+import 'package:cloud_explorers/npc/wizard_npc.dart';
+import 'package:cloud_explorers/player/knight.dart';
+import 'package:cloud_explorers/util/dialogs.dart';
+import 'package:cloud_explorers/util/sounds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -100,7 +100,7 @@ class _GameState extends State<Game> implements GameListener {
           forceTileSize: Vector2(tileSize, tileSize),
           objectsBuilder: {
             'door': (p) => Door(p.position, p.size),
-            'torch': (p) => AzureLogo(p.position),
+            'torch': (p) => AzureLogo(p.position, p.size),
             'potion': (p) => PotionLife(p.position, 30),
             'wizard': (p) => WizardNPC(p.position),
             'spikes': (p) => Spikes(p.position),

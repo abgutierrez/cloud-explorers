@@ -8,28 +8,18 @@ import 'package:cloud_explorers/decoration/spikes.dart';
 import 'package:cloud_explorers/decoration/torch.dart';
 import 'package:cloud_explorers/interface/knight_interface.dart';
 import 'package:cloud_explorers/main.dart';
-<<<<<<< Updated upstream
 import 'package:cloud_explorers/player/local_player/local_player.dart';
 import 'package:cloud_explorers/player/remote_player/remote_player.dart';
-import 'package:cloud_explorers/player/remote_player/wizard_npc.dart';
-import 'package:cloud_explorers/player/knight.dart';
 import 'package:cloud_explorers/socket/socket_manager.dart';
 import 'package:cloud_explorers/util/dialogs.dart';
 import 'package:cloud_explorers/util/player_sprite_sheet.dart';
-=======
-import 'package:cloud_explorers/npc/remote_player.dart';
-import 'package:cloud_explorers/npc/wizard_npc.dart';
-import 'package:cloud_explorers/player/knight.dart';
-import 'package:cloud_explorers/socket/socket_manager.dart';
-import 'package:cloud_explorers/util/dialogs.dart';
->>>>>>> Stashed changes
 import 'package:cloud_explorers/util/sounds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class Game extends StatefulWidget {
   static bool useJoystick = true;
-<<<<<<< Updated upstream
+
   final int idCharacter;
   final int playerId;
   final String nick;
@@ -44,9 +34,6 @@ class Game extends StatefulWidget {
     required this.nick,
     required this.playersOn,
   }) : super(key: key);
-=======
-  const Game({Key? key}) : super(key: key);
->>>>>>> Stashed changes
 
   @override
   _GameState createState() => _GameState();
@@ -63,10 +50,9 @@ class _GameState extends State<Game> implements GameListener {
     _controller = GameController()..addListener(this);
     _socketManager = BonfireInjector.instance.get();
     Sounds.playBackgroundSound();
-<<<<<<< Updated upstream
+
     _setupSocketControl();
-=======
->>>>>>> Stashed changes
+
     super.initState();
   }
 
@@ -122,25 +108,17 @@ class _GameState extends State<Game> implements GameListener {
       child: BonfireWidget(
         gameController: _controller,
         joystick: joystick,
-<<<<<<< Updated upstream
         player: LocalPlayer(
             widget.playerId, widget.nick, Vector2(2 * tileSize, 3 * tileSize)),
-=======
-        player: Knight(
-          Vector2(2 * tileSize, 3 * tileSize),
-        ),
->>>>>>> Stashed changes
         map: WorldMapByTiled(
           'tiled/map.json',
           forceTileSize: Vector2(tileSize, tileSize),
           objectsBuilder: {
             'door': (p) => Door(p.position, p.size),
-            'torch': (p) => AzureLogo(p.position),
+            'torch': (p) => AzureLogo(p.position, p.size),
             'potion': (p) => PotionLife(p.position, 30),
-            'wizard': (p) => WizardNPC(p.position),
             'spikes': (p) => Spikes(p.position),
             'key': (p) => DoorKey(p.position),
-            'imp': (p) => Imp(p.position),
             'torch_empty': (p) => Torch(p.position, empty: true),
           },
         ),
@@ -172,7 +150,14 @@ class _GameState extends State<Game> implements GameListener {
       context,
       () {
         Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => Game()),
+          MaterialPageRoute(
+              builder: (context) => Game(
+                    idCharacter: widget.idCharacter,
+                    nick: widget.nick,
+                    playerId: widget.playerId,
+                    position: widget.position,
+                    playersOn: widget.playersOn,
+                  )),
           (Route<dynamic> route) => false,
         );
       },
@@ -191,7 +176,6 @@ class _GameState extends State<Game> implements GameListener {
       }
     }
   }
-<<<<<<< Updated upstream
 
   void _setupSocketControl() {
     _socketManager.listen('message', (data) {
@@ -224,6 +208,4 @@ class _GameState extends State<Game> implements GameListener {
       ),
     );
   }
-=======
->>>>>>> Stashed changes
 }

@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:darkness_dungeon/util/localization/strings_location.dart';
+import 'package:cloud_explorers/util/localization/strings_location.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

@@ -1,10 +1,10 @@
 import 'package:bonfire/bonfire.dart';
-import 'package:darkness_dungeon/main.dart';
-import 'package:darkness_dungeon/util/custom_sprite_animation_widget.dart';
-import 'package:darkness_dungeon/util/localization/strings_location.dart';
-import 'package:darkness_dungeon/util/npc_sprite_sheet.dart';
-import 'package:darkness_dungeon/util/player_sprite_sheet.dart';
-import 'package:darkness_dungeon/util/sounds.dart';
+import 'package:cloud_explorers/main.dart';
+import 'package:cloud_explorers/util/custom_sprite_animation_widget.dart';
+import 'package:cloud_explorers/util/localization/strings_location.dart';
+import 'package:cloud_explorers/util/npc_sprite_sheet.dart';
+import 'package:cloud_explorers/util/player_sprite_sheet.dart';
+import 'package:cloud_explorers/util/sounds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

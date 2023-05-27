@@ -1,5 +1,5 @@
-import 'package:darkness_dungeon/menu.dart';
-import 'package:darkness_dungeon/util/localization/my_localizations_delegate.dart';
+import 'package:cloud_explorers/menu.dart';
+import 'package:cloud_explorers/util/localization/my_localizations_delegate.dart';
 import 'package:flame/flame.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';

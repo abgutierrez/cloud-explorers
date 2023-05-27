@@ -1,8 +1,8 @@
 import 'dart:ui';
 
 import 'package:bonfire/bonfire.dart';
-import 'package:darkness_dungeon/interface/bar_life_component.dart';
-import 'package:darkness_dungeon/player/knight.dart';
+import 'package:cloud_explorers/interface/bar_life_component.dart';
+import 'package:cloud_explorers/player/knight.dart';
 import 'package:flutter/material.dart';
 
 class KnightInterface extends GameInterface {

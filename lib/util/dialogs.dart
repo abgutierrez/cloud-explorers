@@ -1,5 +1,5 @@
-import 'package:darkness_dungeon/menu.dart';
-import 'package:darkness_dungeon/util/localization/strings_location.dart';
+import 'package:cloud_explorers/menu.dart';
+import 'package:cloud_explorers/util/localization/strings_location.dart';
 import 'package:flutter/material.dart';
 
 class Dialogs {

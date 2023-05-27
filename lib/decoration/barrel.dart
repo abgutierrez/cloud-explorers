@@ -1,5 +1,5 @@
 import 'package:bonfire/bonfire.dart';
-import 'package:darkness_dungeon/main.dart';
+import 'package:cloud_explorers/main.dart';
 
 class Barrel extends GameDecoration with ObjectCollision {
   Barrel(Vector2 position)

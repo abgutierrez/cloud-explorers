@@ -2,11 +2,7 @@ import 'dart:ui';
 
 import 'package:bonfire/bonfire.dart';
 import 'package:cloud_explorers/main.dart';
-<<<<<<< Updated upstream
 import 'package:cloud_explorers/player/remote_player/remote_player.dart';
-=======
-import 'package:cloud_explorers/npc/remote_player.dart';
->>>>>>> Stashed changes
 import 'package:cloud_explorers/socket/socket_manager.dart';
 import 'package:cloud_explorers/socket/socket_message.dart';
 import 'package:cloud_explorers/util/buffer_delay.dart';
